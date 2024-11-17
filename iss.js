@@ -36,8 +36,8 @@ const fetchCoordsByIP = function (ip, callback) {
       return;
     }
 
-    if (!body.success) {
-      const message = `Failed to retrieve coordinates for IP ${ip}. Message: ${body.message}`;
+    if (!body.latitude || !body.longitude) {
+      const message = `Failed to retrieve coordinates for IP ${ip}. Response: ${JSON.stringify(body)}`;
       callback(Error(message), null);
       return;
     }
@@ -47,6 +47,7 @@ const fetchCoordsByIP = function (ip, callback) {
     callback(null, { latitude, longitude });
   });
 };
+
 
 const fetchISSFlyOverTimes = function (coords, callback) {
   const url = `https://iss-flyover.herokuapp.com/json/?lat=${coords.latitude}&lon=${coords.longitude}`;
