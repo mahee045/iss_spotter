@@ -45,6 +45,7 @@ const printPassTimes = function(passTimes) {
     console.log(`Next pass at ${datetime} for ${duration} seconds!`);
   }
 };
+module.exports = { printPassTimes };
 
 nextISSTimesForMyLocation((error, passTimes) => {
   if (error) {
